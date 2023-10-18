@@ -31,9 +31,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5omfr"]
-radius = 27.0
-height = 68.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3el5"]
+radius = 7.32481
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mnre"]
 emission_shape = 2
@@ -60,7 +59,9 @@ sprite_frames = SubResource("SpriteFrames_lsml1")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_5omfr")
+position = Vector2(0, -7)
+scale = Vector2(-3.6861, 3.65827)
+shape = SubResource("CircleShape2D_k3el5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false

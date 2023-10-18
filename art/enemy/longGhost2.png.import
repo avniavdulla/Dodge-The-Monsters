@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2kdewrabwjx2"
-path="res://.godot/imported/playerChar.jpg-4af50aace7cb6da90a0b304124538c05.ctex"
+uid="uid://c5mwvu8olsc08"
+path="res://.godot/imported/longGhost2.png-55c1730bc89afbe99827e4097d726082.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/playerChar.jpg"
-dest_files=["res://.godot/imported/playerChar.jpg-4af50aace7cb6da90a0b304124538c05.ctex"]
+source_file="res://art/enemy/longGhost2.png"
+dest_files=["res://.godot/imported/longGhost2.png-55c1730bc89afbe99827e4097d726082.ctex"]
 
 [params]
 
