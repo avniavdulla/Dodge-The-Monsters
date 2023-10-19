@@ -4,7 +4,7 @@
 The main goal of the game is to get a high score. You do this by surving for as long as possible and collecting coins. 
 # Demo
 
-![ghostGameDemo480](https://github.com/avniavdulla/Dodge-The-Monsters/assets/48994140/5865c404-067a-4090-9b4e-08956d6f19e5)
+![ghostGameDemoGif](https://github.com/avniavdulla/Dodge-The-Monsters/assets/48994140/9082cd27-2db4-41ad-b56e-78e3670f44d8)
 
 
 # Controls: 
