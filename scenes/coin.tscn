@@ -154,7 +154,7 @@ shape = SubResource("CircleShape2D_2ur54")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.3, 2.3)
 sprite_frames = SubResource("SpriteFrames_2yaco")
-animation = &"gold"
+animation = &"silver"
 
 [node name="CollectValueLabel" type="Label" parent="."]
 offset_right = 40.0

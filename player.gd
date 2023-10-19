@@ -28,25 +28,26 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.animation = "idle"
 		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.animation = "move"
 		$AnimatedSprite2D.flip_v = false
 		# See the note below about boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0	
+	#elif velocity.y != 0:
+		#$AnimatedSprite2D.animation = "fly"
+		#$AnimatedSprite2D.flip_v = velocity.y > 0	
 	
 func start(pos):
 	dead = false
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
 
 
 func _on_body_entered(body):
@@ -56,6 +57,7 @@ func _on_body_entered(body):
 		$GPUParticles2D.restart()
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$CollisionShape2D.set_deferred("disabled", true)
+
 
 func collect_coin(value):
 	collect.emit(value)

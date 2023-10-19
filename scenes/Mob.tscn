@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcugxetdfapo3"]
+[gd_scene load_steps=14 format=3 uid="uid://bcugxetdfapo3"]
 
 [ext_resource type="Script" path="res://mob.gd" id="1_iapd7"]
 [ext_resource type="Texture2D" uid="uid://dq17jxkbuxww3" path="res://art/enemy/shortGhost3.png" id="2_b3l5o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c5mwvu8olsc08" path="res://art/enemy/longGhost2.png" id="6_6r5pd"]
 [ext_resource type="Texture2D" uid="uid://dg743ectcgukj" path="res://art/enemy/ghost1.png" id="6_qf6yw"]
 [ext_resource type="Texture2D" uid="uid://civblwmhewljg" path="res://art/enemy/ghost2.png" id="7_orata"]
+[ext_resource type="Texture2D" uid="uid://c4b10uhwtt4b7" path="res://art/smokeCloud.png" id="10_ktsql"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7l5t8"]
 animations = [{
@@ -56,6 +57,17 @@ animations = [{
 radius = 24.5926
 height = 63.3049
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghye3"]
+emission_shape = 1
+emission_sphere_radius = 43.35
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+spread = 178.8
+gravity = Vector3(-1, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
 [node name="Mob" type="RigidBody2D" groups=["Enemy"]]
 position = Vector2(-10, -10)
 collision_mask = 0
@@ -65,10 +77,10 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(11, -1)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.51415, 1.5)
 sprite_frames = SubResource("SpriteFrames_7l5t8")
 animation = &"fly"
-frame_progress = 0.253336
+frame_progress = 0.414891
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 enable_node_path = NodePath("../CollisionShape2D")
@@ -78,5 +90,14 @@ position = Vector2(12, 1)
 rotation = 1.5708
 scale = Vector2(0.935243, 1.16895)
 shape = SubResource("CapsuleShape2D_jl1qp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ghye3")
+texture = ExtResource("10_ktsql")
+lifetime = 2.0
+preprocess = 0.25
+speed_scale = 3.8
+randomness = 0.3
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
