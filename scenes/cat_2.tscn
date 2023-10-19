@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4uy3mdp8x5f1"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_o4jwk"]
+[ext_resource type="Texture2D" uid="uid://dar7lnh6r1lnk" path="res://art/bloodSplat.png" id="2_qchgq"]
+[ext_resource type="Texture2D" uid="uid://b7qxxxei3imtn" path="res://art/player/orangeCat.png" id="3_8jwpb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7d81k"]
+radius = 5.39957
+height = 21.4634
+
+[sub_resource type="Gradient" id="Gradient_uo7ck"]
+colors = PackedColorArray(0.964706, 0, 0, 1, 0.495192, 0.0456525, 0.0480797, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7rnm"]
+gradient = SubResource("Gradient_uo7ck")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mnre"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 26.56
+gravity = Vector3(1, 30, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -3.5
+color = Color(1, 0, 0.0156863, 1)
+color_ramp = SubResource("GradientTexture1D_f7rnm")
+turbulence_noise_scale = 6.45
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0lnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8jwpb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8jwpb")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="Cat2" type="Area2D" groups=["Player"]]
+script = ExtResource("1_o4jwk")
+speed = 200
+point_increase = 3
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.96046e-08, 5)
+scale = Vector2(2.12483, 2.12483)
+shape = SubResource("CapsuleShape2D_7d81k")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+top_level = true
+rotation = -0.165806
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_8mnre")
+texture = ExtResource("2_qchgq")
+lifetime = 1.25
+one_shot = true
+preprocess = 0.5
+explosiveness = 0.19
+randomness = 0.37
+local_coords = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_o0lnk")
+animation = &"move"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
+[connection signal="collect" from="." to="." method="_on_collect" flags=18]

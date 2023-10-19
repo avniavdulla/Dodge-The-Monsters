@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmv4mku3qrvwb"]
+[gd_scene load_steps=12 format=3 uid="uid://cmv4mku3qrvwb"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_rqk85"]
 [ext_resource type="FontFile" uid="uid://kscown4twdb3" path="res://fonts/Xolonium-Regular.ttf" id="1_t4dcf"]
+[ext_resource type="Texture2D" uid="uid://0p0pjhonb5pp" path="res://art/robert.PNG" id="3_051dv"]
+[ext_resource type="Texture2D" uid="uid://rw0krjs6bjng" path="res://art/robertSelected.PNG" id="4_w4eso"]
+[ext_resource type="Texture2D" uid="uid://swsjso5gxx8o" path="res://art/player/black cat/blackCatIdle1.png" id="4_wg02a"]
+[ext_resource type="Texture2D" uid="uid://b7qxxxei3imtn" path="res://art/player/orangeCat.png" id="5_tj8xn"]
+[ext_resource type="Texture2D" uid="uid://cqitw2tm62pqu" path="res://art/player/black cat/blackCatIdleSelected.png" id="6_hdkb3"]
+[ext_resource type="Texture2D" uid="uid://dfxxg1g20575r" path="res://art/player/orangeCatSelected.png" id="8_fkvhx"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_0kt8b"]
 device = -1
@@ -10,6 +16,8 @@ unicode = 32
 
 [sub_resource type="Shortcut" id="Shortcut_xw0ag"]
 events = [SubResource("InputEventKey_0kt8b")]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qghq2"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_rqk85")
@@ -23,19 +31,8 @@ text = "0"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HighScoreDisplayName" type="Label" parent="."]
-offset_left = 240.0
-offset_top = 37.0
-offset_right = 480.0
-offset_bottom = 118.0
-theme_override_fonts/font = ExtResource("1_t4dcf")
-theme_override_font_sizes/font_size = 16
-text = "High Score"
-horizontal_alignment = 2
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ScoreDisplayName" type="Label" parent="."]
+[node name="ScoreDisplayName" type="Label" parent="ScoreLabel"]
+layout_mode = 0
 offset_top = 37.0
 offset_right = 240.0
 offset_bottom = 118.0
@@ -59,6 +56,18 @@ horizontal_alignment = 2
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="HighScoreDisplayName" type="Label" parent="HighScoreLabel"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 240.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("1_t4dcf")
+theme_override_font_sizes/font_size = 16
+text = "High Score"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="MessageTimer" type="Timer" parent="."]
 
 [node name="Message" type="Label" parent="."]
@@ -75,7 +84,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_t4dcf")
 theme_override_font_sizes/font_size = 64
-text = "Dodge the Creeps!"
+text = "Dodge the Ghosts!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -86,16 +95,94 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -88.5
-offset_top = -170.0
-offset_right = 111.5
-offset_bottom = -84.0
+offset_left = -100.0
+offset_top = -206.0
+offset_right = 100.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_vertical = 8
+tooltip_text = "Starts the game"
 theme_override_fonts/font = ExtResource("1_t4dcf")
 theme_override_font_sizes/font_size = 64
 shortcut = SubResource("Shortcut_xw0ag")
 text = "Start"
 
+[node name="RobertButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -88.0
+offset_right = 20.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+tooltip_text = "Speed: fast
+Points: faster"
+toggle_mode = true
+texture_normal = ExtResource("3_051dv")
+texture_pressed = ExtResource("4_w4eso")
+ignore_texture_size = true
+stretch_mode = 5
+metadata/_edit_group_ = true
+
+[node name="BlackCatButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -86.0
+offset_right = -100.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+tooltip_text = "Speed: normal
+Points: normal"
+toggle_mode = true
+texture_normal = ExtResource("4_wg02a")
+texture_pressed = ExtResource("6_hdkb3")
+ignore_texture_size = true
+stretch_mode = 5
+metadata/_edit_group_ = true
+
+[node name="OrangeCatButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 101.0
+offset_top = -98.0
+offset_right = 141.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+tooltip_text = "Speed: slow
+Points: fastest"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qghq2")
+texture_normal = ExtResource("5_tj8xn")
+texture_pressed = ExtResource("8_fkvhx")
+ignore_texture_size = true
+stretch_mode = 5
+metadata/_edit_group_ = true
+
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="RobertButton" to="." method="_on_robert_button_pressed"]
+[connection signal="pressed" from="BlackCatButton" to="." method="_on_black_cat_button_pressed"]
+[connection signal="pressed" from="OrangeCatButton" to="." method="_on_orange_cat_button_pressed"]

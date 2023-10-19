@@ -1,13 +1,17 @@
 extends Node
 
+@export var player_scenes: Array[PackedScene] 
 @export var mob_scene: PackedScene
 @export var coin_scene: PackedScene
+var selected_player
+var player_index = 0
 var score = 0
 var high_score = 0
 static var background_base = "res://art/backgrounds/background"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawn_player()
 	randomize()
 	$BackgroundTexture.set_texture(load(background_base + str(randi() % 7) + ".jpg" ))
 
@@ -32,7 +36,7 @@ func new_game():
 	score = 0
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
-	$Player.start($StartPosition.position)
+	selected_player.start($StartPosition.position)
 	$StartTimer.start()
 	$CoinTimer.start()
 	$Music.play()
@@ -40,7 +44,7 @@ func new_game():
 
 
 func _on_score_timer_timeout():
-	score += 1
+	score += selected_player.point_increase
 	$HUD.update_score(score)
 	if score % 50 == 0 && score != 0: 
 		$BackgroundTexture.set_texture(load(background_base + str(randi() % 9) + ".jpg" ))
@@ -50,6 +54,12 @@ func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
 
+func spawn_player(): 
+	var scene = player_scenes[player_index]
+	selected_player = scene.instantiate()
+	selected_player.hit.connect(game_over)
+	selected_player.collect.connect(_on_player_collect)
+	add_child(selected_player)
 
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -94,3 +104,9 @@ func _on_player_collect(value: int):
 	score += value
 	$HUD.update_score(score)
 	
+
+
+func _on_hud_player_chosen(index):
+	remove_child(selected_player)
+	player_index = index
+	spawn_player()

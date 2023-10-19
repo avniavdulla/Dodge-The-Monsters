@@ -4,6 +4,7 @@ signal hit
 signal collect(value)
 
 @export var speed = 400 #pixels/s
+@export var point_increase = 1
 var screen_size #size of game window
 var dead = false
 # Called when the node enters the scene tree for the first time.
@@ -54,6 +55,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
 		dead = true
 		hit.emit()
+		$GPUParticles2D.position = position
 		$GPUParticles2D.restart()
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$CollisionShape2D.set_deferred("disabled", true)

@@ -1,14 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvk14hqpf1n4t"]
+[gd_scene load_steps=10 format=3 uid="uid://cvk14hqpf1n4t"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6tgv6"]
 [ext_resource type="Texture2D" uid="uid://blii8dns53pr" path="res://art/robert2.PNG" id="2_xo0rp"]
 [ext_resource type="Texture2D" uid="uid://0p0pjhonb5pp" path="res://art/robert.PNG" id="3_kyudl"]
-[ext_resource type="Texture2D" uid="uid://08ga8jmgk2ot" path="res://art/player/playerGrey_up1.png" id="4_jpoq5"]
-[ext_resource type="Texture2D" uid="uid://5lrj171hayev" path="res://art/player/playerGrey_up2.png" id="5_l7v7b"]
 [ext_resource type="Texture2D" uid="uid://dar7lnh6r1lnk" path="res://art/bloodSplat.png" id="6_bj22f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lsml1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kyudl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_xo0rp")
@@ -17,18 +23,7 @@ animations = [{
 "texture": ExtResource("3_kyudl")
 }],
 "loop": true,
-"name": &"fly",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_jpoq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_l7v7b")
-}],
-"loop": true,
-"name": &"up",
+"name": &"move",
 "speed": 5.0
 }]
 
@@ -36,18 +31,19 @@ animations = [{
 radius = 10.8
 height = 21.6
 
-[sub_resource type="Gradient" id="Gradient_uo7ck"]
-colors = PackedColorArray(0.964706, 0, 0, 1, 0.495192, 0.0456525, 0.0480797, 1)
+[sub_resource type="Gradient" id="Gradient_vrmrd"]
+offsets = PackedFloat32Array(0.257282, 1)
+colors = PackedColorArray(0.145098, 1, 0, 1, 1, 0, 0.0156863, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7rnm"]
-gradient = SubResource("Gradient_uo7ck")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8jhrj"]
+gradient = SubResource("Gradient_vrmrd")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mnre"]
 lifetime_randomness = 0.52
 particle_flag_disable_z = true
 direction = Vector3(1, 1, 1)
 spread = 25.44
-gravity = Vector3(0, 40, 0)
+gravity = Vector3(0, 30, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 512.6
 orbit_velocity_min = 0.0
@@ -55,18 +51,20 @@ orbit_velocity_max = 0.0
 radial_accel_min = -3.5
 angle_min = -142.9
 angle_max = 75.4
-color = Color(1, 0, 0.0156863, 1)
-color_ramp = SubResource("GradientTexture1D_f7rnm")
+color = Color(0.145098, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_8jhrj")
 turbulence_noise_scale = 6.45
 
 [node name="Bird" type="Area2D" groups=["Player"]]
 script = ExtResource("1_6tgv6")
+speed = 600
+point_increase = 2
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_lsml1")
-animation = &"fly"
+animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.06581e-14, 2)
@@ -74,16 +72,16 @@ scale = Vector2(2.5, 2.5)
 shape = SubResource("CapsuleShape2D_7d81k")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+top_level = true
 rotation = -0.165806
 scale = Vector2(0.005, 0.005)
 emitting = false
 amount = 5
 process_material = SubResource("ParticleProcessMaterial_8mnre")
 texture = ExtResource("6_bj22f")
-lifetime = 2.0
 one_shot = true
 preprocess = 0.5
-explosiveness = 1.0
+explosiveness = 0.5
 randomness = 0.6
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
