@@ -13,7 +13,7 @@ config_version=5
 config/name="DodgeTheGhosts"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.1", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://art/player/black cat/blackCatIdle1.png"
 
 [display]
 
