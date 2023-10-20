@@ -16,7 +16,7 @@ colors = PackedColorArray(0.964706, 0, 0, 1, 0.495192, 0.0456525, 0.0480797, 1)
 gradient = SubResource("Gradient_uo7ck")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8mnre"]
-lifetime_randomness = 1.0
+lifetime_randomness = 0.5
 particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 26.56
@@ -73,13 +73,14 @@ metadata/_edit_group_ = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 top_level = true
 scale = Vector2(0.5, 0.5)
+emitting = false
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_8mnre")
 texture = ExtResource("6_n7kxv")
 lifetime = 2.0
 one_shot = true
 preprocess = 2.0
-explosiveness = 0.26
+explosiveness = 0.23
 randomness = 0.29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

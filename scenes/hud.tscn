@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmv4mku3qrvwb"]
+[gd_scene load_steps=13 format=3 uid="uid://cmv4mku3qrvwb"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_rqk85"]
 [ext_resource type="FontFile" uid="uid://kscown4twdb3" path="res://fonts/Xolonium-Regular.ttf" id="1_t4dcf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7qxxxei3imtn" path="res://art/player/orangeCat.png" id="5_tj8xn"]
 [ext_resource type="Texture2D" uid="uid://cqitw2tm62pqu" path="res://art/player/black cat/blackCatIdleSelected.png" id="6_hdkb3"]
 [ext_resource type="Texture2D" uid="uid://dfxxg1g20575r" path="res://art/player/orangeCatSelected.png" id="8_fkvhx"]
+[ext_resource type="Script" path="res://scenes/constants.gd" id="9_pmicl"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_0kt8b"]
 device = -1
@@ -180,6 +181,9 @@ texture_pressed = ExtResource("8_fkvhx")
 ignore_texture_size = true
 stretch_mode = 5
 metadata/_edit_group_ = true
+
+[node name="Constants" type="Node2D" parent="."]
+script = ExtResource("9_pmicl")
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

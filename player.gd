@@ -40,6 +40,7 @@ func _process(delta):
 		# See the note below about boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	#elif velocity.y != 0:
+		# MAKE GOING UP ANIMATION <--------------
 		#$AnimatedSprite2D.animation = "fly"
 		#$AnimatedSprite2D.flip_v = velocity.y > 0	
 	
@@ -48,8 +49,6 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-
-
 
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):

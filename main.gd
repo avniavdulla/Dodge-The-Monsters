@@ -1,5 +1,7 @@
 extends Node
 
+## Runs the main game logic 
+
 @export var player_scenes: Array[PackedScene] 
 @export var mob_scene: PackedScene
 @export var coin_scene: PackedScene
@@ -9,18 +11,18 @@ var score = 0
 var high_score = 0
 static var background_base = "res://art/backgrounds/background"
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	spawn_player()
 	randomize()
 	$BackgroundTexture.set_texture(load(background_base + str(randi() % 7) + ".jpg" ))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-# called when the player is hit by the enemies 
+## called when the player is hit by the enemies 
 func game_over():
 	$DeathSound.play()
 	$ScoreTimer.stop()
@@ -48,7 +50,6 @@ func _on_score_timer_timeout():
 	$HUD.update_score(score)
 	if score % 50 == 0 && score != 0: 
 		$BackgroundTexture.set_texture(load(background_base + str(randi() % 9) + ".jpg" ))
-
 
 func _on_start_timer_timeout():
 	$MobTimer.start()
@@ -104,7 +105,6 @@ func _on_player_collect(value: int):
 	score += value
 	$HUD.update_score(score)
 	
-
 
 func _on_hud_player_chosen(index):
 	remove_child(selected_player)
