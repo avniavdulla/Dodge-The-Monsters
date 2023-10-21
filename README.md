@@ -6,7 +6,7 @@ The main goal of the game is to get a high score. You do this by surving for as 
 
 	Get the entire prject and run it using Godot.  
 	OR
-	Download the zip ``
+	Download the zip `DodgeTheGhosts.zip`
 
 # Controls: 
 Move:
