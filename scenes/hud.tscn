@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cmv4mku3qrvwb"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_rqk85"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_7jqqy"]
 [ext_resource type="FontFile" uid="uid://kscown4twdb3" path="res://fonts/Xolonium-Regular.ttf" id="1_t4dcf"]
 [ext_resource type="Texture2D" uid="uid://0p0pjhonb5pp" path="res://art/robert.PNG" id="3_051dv"]
 [ext_resource type="Texture2D" uid="uid://rw0krjs6bjng" path="res://art/robertSelected.PNG" id="4_w4eso"]
@@ -32,7 +32,7 @@ events = [SubResource("InputEventKey_5su74")]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_rqk85")
+script = ExtResource("1_7jqqy")
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_right = 240.0

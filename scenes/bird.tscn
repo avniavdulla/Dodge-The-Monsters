@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cvk14hqpf1n4t"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_6tgv6"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lofxo"]
 [ext_resource type="Texture2D" uid="uid://blii8dns53pr" path="res://art/robert2.PNG" id="2_xo0rp"]
 [ext_resource type="Texture2D" uid="uid://0p0pjhonb5pp" path="res://art/robert.PNG" id="3_kyudl"]
 [ext_resource type="Texture2D" uid="uid://dar7lnh6r1lnk" path="res://art/bloodSplat.png" id="6_bj22f"]
@@ -53,7 +53,7 @@ color_ramp = SubResource("GradientTexture1D_8jhrj")
 turbulence_noise_scale = 6.45
 
 [node name="Bird" type="Area2D" groups=["Player"]]
-script = ExtResource("1_6tgv6")
+script = ExtResource("1_lofxo")
 speed = 600
 point_increase = 2
 metadata/_edit_group_ = true

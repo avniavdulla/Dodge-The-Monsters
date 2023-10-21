@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4uy3mdp8x5f1"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_o4jwk"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2mhot"]
 [ext_resource type="Texture2D" uid="uid://dar7lnh6r1lnk" path="res://art/bloodSplat.png" id="2_qchgq"]
 [ext_resource type="Texture2D" uid="uid://b7qxxxei3imtn" path="res://art/player/orangeCat.png" id="3_8jwpb"]
 
@@ -49,7 +49,7 @@ animations = [{
 }]
 
 [node name="Cat2" type="Area2D" groups=["Player"]]
-script = ExtResource("1_o4jwk")
+script = ExtResource("1_2mhot")
 speed = 200
 point_increase = 3
 metadata/_edit_group_ = true
