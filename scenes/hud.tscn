@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmv4mku3qrvwb"]
+[gd_scene load_steps=18 format=3 uid="uid://cmv4mku3qrvwb"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_rqk85"]
 [ext_resource type="FontFile" uid="uid://kscown4twdb3" path="res://fonts/Xolonium-Regular.ttf" id="1_t4dcf"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cqitw2tm62pqu" path="res://art/player/black cat/blackCatIdleSelected.png" id="6_hdkb3"]
 [ext_resource type="Texture2D" uid="uid://dfxxg1g20575r" path="res://art/player/orangeCatSelected.png" id="8_fkvhx"]
 [ext_resource type="Script" path="res://scenes/constants.gd" id="9_pmicl"]
+[ext_resource type="Texture2D" uid="uid://cr0c5332ryso" path="res://art/settingsGear.png" id="10_rq70m"]
+[ext_resource type="Texture2D" uid="uid://1weoo5dd4hcw" path="res://art/settingsGearHover.png" id="11_aske7"]
+[ext_resource type="PackedScene" uid="uid://dwow2xuxsab1" path="res://scenes/settings_hub.tscn" id="12_khfp5"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_0kt8b"]
 device = -1
@@ -20,7 +23,15 @@ events = [SubResource("InputEventKey_0kt8b")]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qghq2"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_5su74"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_h4e0s"]
+events = [SubResource("InputEventKey_5su74")]
+
 [node name="HUD" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_rqk85")
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -72,6 +83,7 @@ autowrap_mode = 2
 [node name="MessageTimer" type="Timer" parent="."]
 
 [node name="Message" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -110,15 +122,15 @@ shortcut = SubResource("Shortcut_xw0ag")
 text = "Start"
 
 [node name="RobertButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -88.0
-offset_right = 20.0
-offset_bottom = -48.0
+anchors_preset = -1
+anchor_left = 0.542
+anchor_top = 0.933
+anchor_right = 0.542
+anchor_bottom = 0.933
+offset_left = -40.16
+offset_top = -39.76
+offset_right = -0.160034
+offset_bottom = 0.23999
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -134,15 +146,15 @@ stretch_mode = 5
 metadata/_edit_group_ = true
 
 [node name="BlackCatButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -140.0
-offset_top = -86.0
-offset_right = -100.0
-offset_bottom = -46.0
+anchors_preset = -1
+anchor_left = 0.292
+anchor_top = 0.936
+anchor_right = 0.292
+anchor_bottom = 0.936
+offset_left = -40.16
+offset_top = -39.92
+offset_right = -0.160019
+offset_bottom = 0.0799561
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -158,15 +170,15 @@ stretch_mode = 5
 metadata/_edit_group_ = true
 
 [node name="OrangeCatButton" type="TextureButton" parent="." groups=["Select Player Buttons"]]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 101.0
-offset_top = -98.0
-offset_right = 141.0
-offset_bottom = -58.0
+anchors_preset = -1
+anchor_left = 0.794
+anchor_top = 0.919
+anchor_right = 0.794
+anchor_bottom = 0.919
+offset_left = -40.12
+offset_top = -39.68
+offset_right = -0.120026
+offset_bottom = 0.320007
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -185,8 +197,52 @@ metadata/_edit_group_ = true
 [node name="Constants" type="Node2D" parent="."]
 script = ExtResource("9_pmicl")
 
+[node name="SettingsButton" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.771
+anchor_right = 0.052
+anchor_bottom = 0.771
+offset_left = -19.96
+offset_top = -20.12
+offset_right = 20.04
+offset_bottom = 19.88
+grow_vertical = 2
+size_flags_horizontal = 0
+tooltip_text = "Opens the settings menu"
+toggle_mode = true
+shortcut = SubResource("Shortcut_h4e0s")
+texture_normal = ExtResource("10_rq70m")
+texture_hover = ExtResource("11_aske7")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="SettingsLabel" type="Label" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.808
+anchor_right = 0.058
+anchor_bottom = 0.808
+offset_left = -4.32
+offset_top = -3.32
+offset_right = 72.68
+offset_bottom = 51.68
+scale = Vector2(0.646026, 0.646026)
+theme_override_fonts/font = ExtResource("1_t4dcf")
+theme_override_font_sizes/font_size = 16
+text = "Settings"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Settings" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("12_khfp5")]
+visible = false
+parent_node = NodePath("..")
+
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="RobertButton" to="." method="_on_robert_button_pressed"]
 [connection signal="pressed" from="BlackCatButton" to="." method="_on_black_cat_button_pressed"]
 [connection signal="pressed" from="OrangeCatButton" to="." method="_on_orange_cat_button_pressed"]
+[connection signal="toggled" from="SettingsButton" to="." method="_on_settings_button_toggled"]

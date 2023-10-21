@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name HUD
+
 ## Script for controlling the HUD 
 
 ## controls how the buttons interact with the game 
@@ -7,6 +9,8 @@ extends CanvasLayer
 
 ## Notifies `Main` node that it should start the game
 signal start_game
+## Notifies game that the pause menu is up
+signal pause_game(val: bool)
 ## Notifies the game when the player is chosen 
 signal player_chosen(index)
 
@@ -120,3 +124,11 @@ func _on_orange_cat_button_pressed():
 	save_to_disc(last_selected_player,  "last_selected_player" )
 	$BlackCatButton.button_pressed = false
 	$RobertButton.button_pressed = false
+
+func _on_settings_button_toggled(button_pressed):
+	if $Settings.is_visible_in_tree():
+		$Settings.hide()
+		get_tree().paused = false
+	else: 
+		$Settings.show()
+		get_tree().paused = true
